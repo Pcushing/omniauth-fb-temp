@@ -124,7 +124,7 @@ module OmniAuth
         puts "**"*50
         puts "authorize_params"
         puts options.inspect
-        puts request.params               
+        puts super.inspect
         super.tap do |params|
           %w[display state scope auth_type].each do |v|
             if request.params[v]
