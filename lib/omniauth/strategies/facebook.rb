@@ -118,7 +118,11 @@ module OmniAuth
       #
       # /auth/facebook?display=popup&state=ABC
       #
-      def authorize_params        
+      def authorize_params 
+        puts "**"*50
+        puts params.inspect
+        puts session.inspect
+               
         super.tap do |params|
           %w[display state scope auth_type].each do |v|
             if request.params[v]
@@ -128,12 +132,8 @@ module OmniAuth
               session['omniauth.state'] = params[:state] if v == 'state'
             end
           end
-          puts "**"*50
-          puts params.inspect
-          puts session.inspect
+          
           params[:scope] ||= DEFAULT_SCOPE
-          puts "**"*50
-          puts params[:scope]
         end
       end
 
