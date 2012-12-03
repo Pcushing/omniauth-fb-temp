@@ -130,6 +130,8 @@ module OmniAuth
           end
 
           params[:scope] ||= DEFAULT_SCOPE
+          puts "**"*50
+          puts params[:scope]
         end
       end
 
