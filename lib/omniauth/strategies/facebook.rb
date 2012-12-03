@@ -57,6 +57,11 @@ module OmniAuth
       end
 
       def build_access_token
+        puts "**"*50
+        puts "build_access_token"
+        puts request.params
+        puts options.inspect
+        
         if access_token = request.params["access_token"]
           ::OAuth2::AccessToken.from_hash(
             client, 
@@ -77,6 +82,10 @@ module OmniAuth
       end
 
       def request_phase
+        puts "**"*50
+        puts "request_phase"
+        puts request.params
+        
         if signed_request_contains_access_token?
           # if we already have an access token, we can just hit the
           # callback URL directly and pass the signed request along
@@ -108,6 +117,9 @@ module OmniAuth
       end
 
       def access_token_options
+        puts "**"*50
+        puts "access_token_options"
+        puts request.params
         options.access_token_options.inject({}) { |h,(k,v)| h[k.to_sym] = v; h }
       end
 
@@ -120,9 +132,8 @@ module OmniAuth
       #
       def authorize_params 
         puts "**"*50
-        # puts params.inspect
-        puts session.inspect
-               
+        puts "authorize_params"
+        puts request.params               
         super.tap do |params|
           %w[display state scope auth_type].each do |v|
             if request.params[v]
