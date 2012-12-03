@@ -120,7 +120,7 @@ module OmniAuth
       #
       def authorize_params 
         puts "**"*50
-        puts params.inspect
+        # puts params.inspect
         puts session.inspect
                
         super.tap do |params|
